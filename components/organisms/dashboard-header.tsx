@@ -37,7 +37,7 @@ export function DashboardHeader({
                 )}
               </Button>
               <Button variant="outline" size="sm" onClick={onNewSession}>
-                <Plus className="h-3 w-3" /> INIT
+                <Plus className="h-3 w-3" /> New Session
               </Button>
             </div>
           </div>

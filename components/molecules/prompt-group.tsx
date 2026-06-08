@@ -24,7 +24,6 @@ export function PromptGroup({
   const baseAgent = process.env.NEXT_PUBLIC_DEFAULT_AGENT
   const [text, setText] = useState("");
   const [agent, setAgent] = useState(baseAgent);
-  console.log("🚀 ~ PromptGroup ~ defaultAgent:", defaultAgent)
   const [model, setModel] = useState(defaultModel ?? "");
 
   // Sync defaults when session data loads (messages arrive async)

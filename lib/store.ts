@@ -1,6 +1,7 @@
 "use client";
 
 import { create } from "zustand";
+import { client } from "./api";
 
 export type SessionStatus = "idle" | "busy" | "error" | "done" | "retry";
 
@@ -79,10 +80,24 @@ interface AppState {
   addSession: (session: AgentCardData) => void;
   updateSession: (sessionId: string, updates: Partial<AgentCardData>) => void;
   removeSession: (sessionId: string) => void;
+  deleteSession: (sessionId:string) => void;
   addMessage: (sessionId: string, message: MessageData) => void;
-  updateMessage: (sessionId: string, messageId: string, updates: Partial<MessageData>) => void;
-  addPartToMessage: (sessionId: string, messageId: string, part: PartData) => void;
-  updatePartInMessage: (sessionId: string, messageId: string, partId: string, updates: Partial<PartData>) => void;
+  updateMessage: (
+    sessionId: string,
+    messageId: string,
+    updates: Partial<MessageData>,
+  ) => void;
+  addPartToMessage: (
+    sessionId: string,
+    messageId: string,
+    part: PartData,
+  ) => void;
+  updatePartInMessage: (
+    sessionId: string,
+    messageId: string,
+    partId: string,
+    updates: Partial<PartData>,
+  ) => void;
   setStatus: (sessionId: string, status: SessionStatus) => void;
   toggleExpand: (sessionId: string) => void;
   togglePin: (sessionId: string) => void;
@@ -102,7 +117,9 @@ export const useAppStore = create<AppState>((set) => ({
   isConnected: false,
   filter: "",
   statusFilter: "all",
-  darkMode: typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches,
+  darkMode:
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches,
   agents: [],
   models: [],
   defaultModel: null,
@@ -144,6 +161,10 @@ export const useAppStore = create<AppState>((set) => ({
       return { sessions: map };
     }),
 
+  deleteSession: async (sessionId: string) => {
+    await client.session.delete(sessionId);
+  },
+
   addMessage: (sessionId, message) =>
     set((state) => {
       const map = new Map(state.sessions);
@@ -168,7 +189,7 @@ export const useAppStore = create<AppState>((set) => ({
         map.set(sessionId, {
           ...session,
           messages: session.messages.map((m) =>
-            m.id === messageId ? { ...m, ...updates } : m
+            m.id === messageId ? { ...m, ...updates } : m,
           ),
         });
       }
@@ -188,7 +209,7 @@ export const useAppStore = create<AppState>((set) => ({
                   ...m,
                   parts: [...m.parts.filter((p) => p.id !== part.id), part],
                 }
-              : m
+              : m,
           ),
         });
       }
@@ -207,10 +228,10 @@ export const useAppStore = create<AppState>((set) => ({
               ? {
                   ...m,
                   parts: m.parts.map((p) =>
-                    p.id === partId ? { ...p, ...updates } : p
+                    p.id === partId ? { ...p, ...updates } : p,
                   ),
                 }
-              : m
+              : m,
           ),
         });
       }
