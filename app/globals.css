@@ -1,0 +1,125 @@
+@import "tailwindcss";
+@import "../components/thegridcn-theme.css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-terminal-bg: oklch(0.12 0.02 250);
+  --color-terminal-fg: oklch(0.85 0.02 220);
+  --color-terminal-dim: oklch(0.55 0.02 250);
+  --color-terminal-green: oklch(0.7 0.15 150);
+  --color-terminal-red: oklch(0.65 0.2 20);
+  --color-terminal-yellow: oklch(0.75 0.12 90);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-slide-up: slide-up 0.3s ease-out;
+  --animate-pulse-dot: pulse-dot 1.5s ease-in-out infinite;
+
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes slide-up {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+}
+
+:root {
+  --background: oklch(0.06 0.02 250);
+  --foreground: oklch(0.95 0.02 220);
+  --card: oklch(0.1 0.02 250);
+  --card-foreground: oklch(0.92 0.02 220);
+  --popover: oklch(0.1 0.02 250);
+  --popover-foreground: oklch(0.92 0.02 220);
+  --primary: oklch(0.6 0.2 250);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.18 0.06 250);
+  --secondary-foreground: oklch(0.95 0 0);
+  --muted: oklch(0.15 0.04 250);
+  --muted-foreground: oklch(0.55 0.02 250);
+  --accent: oklch(0.55 0.18 250);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.55 0.25 30);
+  --border: oklch(0.28 0.1 250);
+  --input: oklch(0.2 0.06 250);
+  --ring: oklch(0.6 0.2 250);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: oklch(0.06 0.02 250);
+  --foreground: oklch(0.95 0.02 220);
+  --card: oklch(0.1 0.02 250);
+  --card-foreground: oklch(0.92 0.02 220);
+  --popover: oklch(0.1 0.02 250);
+  --popover-foreground: oklch(0.92 0.02 220);
+  --primary: oklch(0.6 0.2 250);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.18 0.06 250);
+  --secondary-foreground: oklch(0.95 0 0);
+  --muted: oklch(0.15 0.04 250);
+  --muted-foreground: oklch(0.55 0.02 250);
+  --accent: oklch(0.55 0.18 250);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.55 0.25 30);
+  --border: oklch(0.28 0.1 250);
+  --input: oklch(0.2 0.06 250);
+  --ring: oklch(0.6 0.2 250);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: color-mix(in oklch, var(--ring) 50%, transparent);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  ::selection {
+    background-color: oklch(0.6 0.2 250 / 0.3);
+    color: var(--foreground);
+  }
+}
+
+@layer components {
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { border-radius: 9999px; background: oklch(0.35 0.05 250); }
+  ::-webkit-scrollbar-thumb:hover { background: oklch(0.45 0.05 250); }
+
+  .scrollbar-thin::-webkit-scrollbar { width: 4px; height: 4px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { border-radius: 9999px; }
+}
