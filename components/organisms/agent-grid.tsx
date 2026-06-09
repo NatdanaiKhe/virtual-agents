@@ -18,6 +18,10 @@ export function AgentGrid() {
     })
     .sort((a, b) => {
       if (a.isPinned !== b.isPinned) return a.isPinned ? -1 : 1;
+      // Children grouped under parents
+      if (a.parentID === b.sessionId) return 1;
+      if (b.parentID === a.sessionId) return -1;
+      if (a.parentID && b.parentID && a.parentID === b.parentID) return (a.createdAt ?? 0) - (b.createdAt ?? 0);
       return (b.createdAt ?? 0) - (a.createdAt ?? 0);
     });
 
@@ -34,7 +38,7 @@ export function AgentGrid() {
   return (
     <div className={cn("flex flex-wrap gap-4", filtered.length === 1 ? "max-w-3xl mx-auto" : "")}>
       {filtered.map((s) => (
-        <div key={s.sessionId} className={filtered.length === 1 ? "w-full" : "w-full lg:w-[calc(50%-0.5rem)]"}>
+        <div key={s.sessionId} className={cn(filtered.length === 1 ? "w-full" : "w-full lg:w-[calc(50%-0.5rem)]", s.parentID && "ml-6 border-l-2 border-primary/20 pl-4")}>
           <AgentCard session={s} />
         </div>
       ))}

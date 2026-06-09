@@ -7,7 +7,9 @@ export type SessionStatus = "idle" | "busy" | "error" | "done" | "retry";
 
 export interface AgentCardData {
   sessionId: string;
+  title: string;
   agentName: string;
+  parentID?: string;
   projectId: string;
   directory: string;
   status: SessionStatus;

@@ -119,7 +119,6 @@ export function AgentCard({ session }: Readonly<AgentCardProps>) {
     ],
   );
 
-
   const copyToClipboard = () => {
     navigator.clipboard.writeText(session.sessionId);
   };
@@ -131,10 +130,34 @@ export function AgentCard({ session }: Readonly<AgentCardProps>) {
   const confirmDelete = async () => {
     setShowDeleteConfirm(false);
     if (session.status === "busy") {
-      try { await client.session.abort(session.sessionId); } catch {}
+      try {
+        await client.session.abort(session.sessionId);
+      } catch {}
     }
-    try { await client.session.delete(session.sessionId); } catch {}
+    try {
+      await client.session.delete(session.sessionId);
+    } catch {}
     removeSession(session.sessionId);
+  };
+
+  const getAgentStatus = () => {
+    let statusText: string;
+
+    switch (session.status) {
+      case "busy":
+        statusText = "PROCESSING";
+        break;
+      case "error":
+        statusText = "ERROR";
+        break;
+      case "done":
+        statusText = "COMPLETE";
+        break;
+      default:
+        statusText = "IDLE";
+    }
+
+    return statusText;
   };
 
   return (
@@ -156,19 +179,26 @@ export function AgentCard({ session }: Readonly<AgentCardProps>) {
       <CornerBracket pos="bl" /> <CornerBracket pos="br" />
       {/* ── Header (always visible, slim) ── */}
       <div className="flex items-center justify-between border-b border-border/50 px-4 py-2.5">
-        <div className="flex items-center gap-2 min-w-0">
+        <div className="flex items-center gap-2 min-w-0 border border-red-500">
           <h3 className="truncate text-xs font-bold uppercase tracking-wider text-foreground">
-            {session.agentName || "UNTITLED"}
+            {session.title || session.agentName || "UNTITLED"}
           </h3>
-          {session.model && (
-            <Badge variant="secondary" className="font-mono text-[9px]">
-              {session.model}
+          <Badge
+            variant="outline"
+            className="font-mono text-[9px] text-primary/80 border-primary/30"
+          >
+            {session.agentName || "unknown"}
+          </Badge>
+          {session.parentID && (
+            <Badge
+              variant="outline"
+              className="font-mono text-[9px] text-muted-foreground border-muted-foreground/30"
+            >
+              SUB
             </Badge>
           )}
-          <p className="hidden sm:block truncate text-[10px] text-muted-foreground font-mono">
-            {session.sessionId.slice(0, 10)}…
-          </p>
         </div>
+        
         <div className="flex items-center gap-0.5">
           <StatusIndicator status={session.status} />
           <Button
@@ -209,6 +239,16 @@ export function AgentCard({ session }: Readonly<AgentCardProps>) {
             )}
           </Button>
         </div>
+        <div>
+          {session.model && (
+            <Badge variant="secondary" className="font-mono text-[9px]">
+              {session.model}
+            </Badge>
+          )}
+          <p className="hidden sm:block truncate text-[10px] text-muted-foreground font-mono">
+            {session.sessionId.slice(0, 10)}…
+          </p>
+        </div>
       </div>
       {/* ── Body (visible when card expanded) ── */}
       {session.isExpanded && (
@@ -223,16 +263,10 @@ export function AgentCard({ session }: Readonly<AgentCardProps>) {
               />
               <div className="text-center">
                 <div className="text-xs font-bold uppercase tracking-wider text-foreground">
-                  {session.status === "busy"
-                    ? "PROCESSING…"
-                    : session.status === "error"
-                      ? "ERROR"
-                      : session.status === "done"
-                        ? "COMPLETE"
-                        : "IDLE"}
+                  {session.agentName || "AGENT"}
                 </div>
                 <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mt-0.5">
-                  {session.agentName || "AGENT"}
+                  {getAgentStatus()}
                 </div>
                 {(session.tokens.input > 0 || session.tokens.output > 0) && (
                   <div className="flex items-center justify-center gap-2 mt-1.5 text-[10px] text-muted-foreground font-mono">
@@ -326,21 +360,27 @@ export function AgentCard({ session }: Readonly<AgentCardProps>) {
           </div>
         </div>
       )}
-
       <Modal
         open={showDeleteConfirm}
         onClose={() => setShowDeleteConfirm(false)}
         title="DELETE SESSION"
-        description={`Are you sure you want to delete "${session.agentName || "UNTITLED"}"? ${session.status === "busy" ? "This will abort the running agent first." : "This action cannot be undone."}`}
+        description={`Are you sure you want to delete "${session.title || session.agentName || "UNTITLED"}"? ${session.status === "busy" ? "This will abort the running agent first." : "This action cannot be undone."}`}
         size="sm"
         footer={
           <div className="flex justify-end gap-2">
-            <Button variant="ghost" size="sm" onClick={() => setShowDeleteConfirm(false)}>CANCEL</Button>
-            <Button variant="destructive" size="sm" onClick={confirmDelete}>DELETE</Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowDeleteConfirm(false)}
+            >
+              CANCEL
+            </Button>
+            <Button variant="destructive" size="sm" onClick={confirmDelete}>
+              DELETE
+            </Button>
           </div>
         }
       />
-
     </div>
   );
 }

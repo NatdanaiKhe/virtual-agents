@@ -46,7 +46,7 @@ export function NewSessionModal({ isOpen, onClose }: NewSessionModalProps) {
       const model = selectedModel || defaultModel;
       let providerID: string | undefined, modelID: string | undefined;
       if (model) { const p = model.split("/"); providerID = p[0]; modelID = p.slice(1).join("/"); }
-      addSession({ sessionId: session.id, agentName: title.trim(), projectId: session.projectID || "", directory: session.directory || "", status: "idle", messages: [], isExpanded: true, isPinned: false, model: model ?? undefined, providerID, tokens: { input: 0, output: 0, reasoning: 0 }, cost: 0, createdAt: session.time?.created || Date.now() });
+      addSession({ sessionId: session.id, title: title.trim(), agentName: title.trim(), projectId: session.projectID || "", directory: session.directory || "", status: "idle", messages: [], isExpanded: true, isPinned: false, model: model ?? undefined, providerID, tokens: { input: 0, output: 0, reasoning: 0 }, cost: 0, createdAt: session.time?.created || Date.now() });
       if (initialPrompt.trim()) {
         try { await client.session.prompt(session.id, { parts: [{ type: "text", text: initialPrompt.trim() }], agent: selectedAgent || undefined, model: model ? { providerID: providerID!, modelID: modelID! } : undefined }); } catch {}
         window.location.reload();

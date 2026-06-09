@@ -14,7 +14,7 @@ import { Bot, Plus } from "lucide-react";
 export default function Home() {
   const { isConnected, isLoading, error, setDefaultModel, setAgents, setModels, sessions } = useAppStore();
 
-  useSessionStream();
+  const { refresh } = useSessionStream();
 
   const [showNewModal, setShowNewModal] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -39,11 +39,22 @@ export default function Home() {
     }
   }, []);
 
+  // Keyboard: R = refresh sessions
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "r" && !e.ctrlKey && !e.metaKey && document.activeElement === document.body) {
+        refresh();
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [refresh]);
+
   if (!mounted) return null;
 
   return (
     <DashboardLayout
-      header={<DashboardHeader onNewSession={() => setShowNewModal(true)} />}
+      header={<DashboardHeader onNewSession={() => setShowNewModal(true)} onRefresh={refresh} />}
       filterBar={<FilterBar />}
     >
       {/* Error banner */}
