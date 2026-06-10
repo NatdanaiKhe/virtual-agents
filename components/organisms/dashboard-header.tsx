@@ -1,11 +1,12 @@
 "use client";
 
 import { useAppStore } from "../../lib/store";
+import { isDemoMode } from "../../lib/demo-data";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { StatusDot } from "../atoms/status-dot";
 import { StatusBar } from "../thegridcn/status-bar";
-import { Plus, Moon, Sun, Bot, RefreshCw, Settings } from "lucide-react";
+import { Plus, Moon, Sun, Bot, RefreshCw, Settings, FlaskConical } from "lucide-react";
 
 export function DashboardHeader({
   onNewSession,
@@ -17,6 +18,7 @@ export function DashboardHeader({
   onOpenSettings: () => void;
 }) {
   const { isConnected, darkMode, toggleDarkMode, sessions } = useAppStore();
+  const demo = isDemoMode();
 
   return (
     <>
@@ -43,9 +45,11 @@ export function DashboardHeader({
               <Button variant="ghost" size="icon-sm" onClick={onOpenSettings} title="Settings">
                 <Settings className="h-3.5 w-3.5" />
               </Button>
-              <Button variant="ghost" size="icon-sm" onClick={onRefresh} title="Refresh sessions (R)">
-                <RefreshCw className="h-3.5 w-3.5" />
-              </Button>
+              {!demo && (
+                <Button variant="ghost" size="icon-sm" onClick={onRefresh} title="Refresh sessions (R)">
+                  <RefreshCw className="h-3.5 w-3.5" />
+                </Button>
+              )}
               <Button variant="outline" size="sm" onClick={onNewSession}>
                 <Plus className="h-3 w-3" /> New Session
               </Button>
@@ -72,6 +76,14 @@ export function DashboardHeader({
                   <StatusDot status="disconnected" /> OFFLINE
                 </Badge>
               )}
+              {demo && (
+                <Badge
+                  variant="secondary"
+                  className="gap-1 bg-amber-500/10 text-amber-400 border-amber-500/20 text-[9px]"
+                >
+                  <FlaskConical className="h-2.5 w-2.5" /> DEMO MODE
+                </Badge>
+              )}
             </div>
           }
           rightContent={
@@ -81,7 +93,7 @@ export function DashboardHeader({
                   {sessions.size} AGENT{sessions.size !== 1 ? "S" : ""}
                 </Badge>
               )}
-              <span className="text-muted-foreground">opencode :4096</span>
+              <span className="text-muted-foreground">{demo ? "SAMPLE DATA" : "opencode :4096"}</span>
             </div>
           }
         />

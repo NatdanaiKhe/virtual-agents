@@ -8,6 +8,7 @@ import {
   type SessionStatus,
 } from "../lib/store";
 import { client } from "../lib/api";
+import { isDemoMode, DEMO_SESSIONS } from "../lib/demo-data";
 
 const POLL_INTERVAL = 15_000;
 
@@ -560,6 +561,12 @@ export function useSessionStream() {
 
   // Initialize connection
   useEffect(() => {
+    if (isDemoMode()) {
+      setConnected(true);
+      setSessions(DEMO_SESSIONS);
+      return;
+    }
+
     fetchInitialData();
     // Try SSE first
     startSSE();

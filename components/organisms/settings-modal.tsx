@@ -8,6 +8,7 @@ import { Badge } from "../ui/badge";
 import { StatusDot } from "../atoms/status-dot";
 import { useAppStore } from "../../lib/store";
 import { client } from "../../lib/api";
+import { isDemoMode, disableDemoMode } from "../../lib/demo-data";
 import { Settings, Server, Plug, Globe, Bot, Cpu } from "lucide-react";
 
 interface SettingsModalProps {
@@ -71,6 +72,12 @@ export function SettingsModal({ isOpen, onClose, onServerUrlChanged }: SettingsM
       }
     }
 
+    if (isDemoMode()) {
+      disableDemoMode();
+      window.location.reload();
+      return;
+    }
+
     onServerUrlChanged?.();
     onClose();
   };
@@ -104,6 +111,13 @@ export function SettingsModal({ isOpen, onClose, onServerUrlChanged }: SettingsM
       footer={footer}
     >
       <div className="space-y-6">
+        {isDemoMode() && (
+          <div className="rounded border border-amber-500/30 bg-amber-500/5 px-3 py-2.5 text-[10px] text-amber-400/80 font-mono leading-relaxed">
+            <strong className="text-amber-400 uppercase tracking-wider">Demo Active</strong> — Enter your
+            opencode server URL below and save to connect to a live server.
+          </div>
+        )}
+
         {/* Server URL */}
         <div className="space-y-2">
           <div className="flex items-center gap-2">
