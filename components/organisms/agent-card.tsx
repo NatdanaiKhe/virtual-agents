@@ -179,26 +179,40 @@ export function AgentCard({ session }: Readonly<AgentCardProps>) {
       <CornerBracket pos="bl" /> <CornerBracket pos="br" />
       {/* ── Header (always visible, slim) ── */}
       <div className="flex items-center justify-between border-b border-border/50 px-4 py-2.5">
-        <div className="flex items-center gap-2 min-w-0 border border-red-500">
-          <h3 className="truncate text-xs font-bold uppercase tracking-wider text-foreground">
-            {session.title || session.agentName || "UNTITLED"}
-          </h3>
-          <Badge
-            variant="outline"
-            className="font-mono text-[9px] text-primary/80 border-primary/30"
-          >
-            {session.agentName || "unknown"}
-          </Badge>
-          {session.parentID && (
+        {/* title */}
+        <div className="flex gap-2">
+          <div className="flex flex-col gap-2 min-w-0">
+            <h3 className="truncate text-xs font-bold uppercase tracking-wider text-foreground">
+              {session.title || session.agentName || "UNTITLED"}
+            </h3>
+
+            <div className="flex gap-2">
             <Badge
               variant="outline"
-              className="font-mono text-[9px] text-muted-foreground border-muted-foreground/30"
+              className="font-mono text-[9px] text-primary/80 border-primary/30"
             >
-              SUB
+              {session.agentName || "unknown"}
             </Badge>
-          )}
+            {session.parentID && (
+              <Badge
+                variant="outline"
+                className="font-mono text-[9px] text-muted-foreground border-muted-foreground/30"
+              >
+                SUB
+              </Badge>
+            )}
+            {session.model && (
+              <Badge variant="secondary" className="font-mono text-[9px]">
+                {session.model}
+              </Badge>
+            )}
+            </div>
+            <p className="hidden sm:block truncate text-[10px] text-muted-foreground font-mono">
+              {session.sessionId}
+            </p>
+          </div>
         </div>
-        
+        {/* menu */}
         <div className="flex items-center gap-0.5">
           <StatusIndicator status={session.status} />
           <Button
@@ -238,16 +252,6 @@ export function AgentCard({ session }: Readonly<AgentCardProps>) {
               <Maximize2 className="h-3.5 w-3.5" />
             )}
           </Button>
-        </div>
-        <div>
-          {session.model && (
-            <Badge variant="secondary" className="font-mono text-[9px]">
-              {session.model}
-            </Badge>
-          )}
-          <p className="hidden sm:block truncate text-[10px] text-muted-foreground font-mono">
-            {session.sessionId.slice(0, 10)}…
-          </p>
         </div>
       </div>
       {/* ── Body (visible when card expanded) ── */}

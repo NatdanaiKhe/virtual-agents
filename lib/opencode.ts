@@ -146,3 +146,13 @@ export async function fetchConfig() {
   const result = await client.config.get();
   return result.data ?? null;
 }
+
+/**
+ * Server-side only: fetches current path information
+ */
+
+export async function fetchPath() {
+  const client = getOpencodeClient();
+  const result = await client.path.get();
+  return result.data ?? null;
+}

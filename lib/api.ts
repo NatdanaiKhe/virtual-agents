@@ -13,6 +13,7 @@
  * - client.app.agents()        → GET  /api/agents
  * - client.provider.list()     → GET  /api/models
  * - client.config.get()        → GET  /api/config
+ * - client.path.get()          → GET  /api/path
  */
 
 interface SessionPromptParams {
@@ -23,7 +24,10 @@ interface SessionPromptParams {
 
 export const client = {
   session: {
-    list: () => fetch("/api/sessions").then((r) => r.json()).catch(() => []),
+    list: () =>
+      fetch("/api/sessions")
+        .then((r) => r.json())
+        .catch(() => []),
     create: (params?: { title?: string }) =>
       fetch("/api/sessions", {
         method: "POST",
@@ -44,16 +48,36 @@ export const client = {
         }),
       }).then((r) => r.json()),
     abort: (id: string) =>
-      fetch(`/api/sessions/${id}/abort`, { method: "POST" }).then((r) => r.json()),
-    messages: (id: string) => fetch(`/api/sessions/${id}/messages`).then((r) => r.json()).catch(() => []),
+      fetch(`/api/sessions/${id}/abort`, { method: "POST" }).then((r) =>
+        r.json(),
+      ),
+    messages: (id: string) =>
+      fetch(`/api/sessions/${id}/messages`)
+        .then((r) => r.json())
+        .catch(() => []),
   },
   app: {
-    agents: () => fetch("/api/agents").then((r) => r.json()).catch(() => []),
+    agents: () =>
+      fetch("/api/agents")
+        .then((r) => r.json())
+        .catch(() => []),
   },
   provider: {
-    list: () => fetch("/api/models").then((r) => r.json()).catch(() => []),
+    list: () =>
+      fetch("/api/models")
+        .then((r) => r.json())
+        .catch(() => []),
   },
   config: {
-    get: () => fetch("/api/config").then((r) => r.json()).catch(() => ({ defaultModel: null })),
+    get: () =>
+      fetch("/api/config")
+        .then((r) => r.json())
+        .catch(() => ({ defaultModel: null })),
+  },
+  path: {
+    get: () =>
+      fetch("/api/path")
+        .then((r) => r.json())
+        .catch(() => []),
   },
 };
