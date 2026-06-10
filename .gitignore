@@ -37,3 +37,5 @@ next-env.d.ts
 
 # AI
 .omo/
+.opencode/
+/graphify-out/cache/

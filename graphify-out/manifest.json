@@ -1,0 +1,342 @@
+{
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/.opencode/opencode.json": {
+    "mtime": 1781062047.9762292,
+    "ast_hash": "e5f74d14a81702b55bdf53b33ec991d7",
+    "semantic_hash": "e5f74d14a81702b55bdf53b33ec991d7"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/.opencode/plugins/graphify.js": {
+    "mtime": 1781061620.2953458,
+    "ast_hash": "64ccd3c03dbfe0980b6095766f5c4e52",
+    "semantic_hash": "64ccd3c03dbfe0980b6095766f5c4e52"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/app/api/agents/route.ts": {
+    "mtime": 1780650095.4782302,
+    "ast_hash": "dc4b2e76b4e44d11f2026244cf4fa338",
+    "semantic_hash": "dc4b2e76b4e44d11f2026244cf4fa338"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/app/api/config/route.ts": {
+    "mtime": 1780652533.4675512,
+    "ast_hash": "1eff1db538aaa891c7454046bd275f6a",
+    "semantic_hash": "1eff1db538aaa891c7454046bd275f6a"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/app/api/events/route.ts": {
+    "mtime": 1780650108.156131,
+    "ast_hash": "baa5367c04f437573b9b3f0a254a12df",
+    "semantic_hash": "baa5367c04f437573b9b3f0a254a12df"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/app/api/models/route.ts": {
+    "mtime": 1780887948.9265413,
+    "ast_hash": "8e0ac73f132db5478c3a20fb124c96ce",
+    "semantic_hash": "8e0ac73f132db5478c3a20fb124c96ce"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/app/api/paths/route.ts": {
+    "mtime": 1781060477.2580166,
+    "ast_hash": "3659bb673aaf07dceeb9bb23af65a2a0",
+    "semantic_hash": "3659bb673aaf07dceeb9bb23af65a2a0"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/app/api/sessions/[id]/abort/route.ts": {
+    "mtime": 1780892621.516898,
+    "ast_hash": "3eae7bc4b666fc979839e6e6f161dced",
+    "semantic_hash": "3eae7bc4b666fc979839e6e6f161dced"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/app/api/sessions/[id]/messages/route.ts": {
+    "mtime": 1780892621.5198886,
+    "ast_hash": "2523a935072f9e68925bd523f5d3e6f7",
+    "semantic_hash": "2523a935072f9e68925bd523f5d3e6f7"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/app/api/sessions/[id]/prompt/route.ts": {
+    "mtime": 1780892621.523615,
+    "ast_hash": "4d2d93bdcf2d4aa21aa320e40c9a9449",
+    "semantic_hash": "4d2d93bdcf2d4aa21aa320e40c9a9449"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/app/api/sessions/[id]/route.ts": {
+    "mtime": 1780892621.5133932,
+    "ast_hash": "2303270ba8f357600dd67c17e1d21d94",
+    "semantic_hash": "2303270ba8f357600dd67c17e1d21d94"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/app/api/sessions/route.ts": {
+    "mtime": 1780650098.1640522,
+    "ast_hash": "7dc9a962c6e245b1abdb561822c65283",
+    "semantic_hash": "7dc9a962c6e245b1abdb561822c65283"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/app/layout.tsx": {
+    "mtime": 1780894105.400156,
+    "ast_hash": "b0a68314ce69ac7bff9b67c70daab1b6",
+    "semantic_hash": "b0a68314ce69ac7bff9b67c70daab1b6"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/app/page.tsx": {
+    "mtime": 1780913676.4743183,
+    "ast_hash": "5f78e8f62546098b33f79cad2757f82e",
+    "semantic_hash": "5f78e8f62546098b33f79cad2757f82e"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components.json": {
+    "mtime": 1780891216.9646502,
+    "ast_hash": "f0f6813abd1a1f64f4f442295017df70",
+    "semantic_hash": "f0f6813abd1a1f64f4f442295017df70"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/atoms/agent-icon.tsx": {
+    "mtime": 1780892680.6289496,
+    "ast_hash": "f7e1d30a29b3370c330cf75841585991",
+    "semantic_hash": "f7e1d30a29b3370c330cf75841585991"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/atoms/index.ts": {
+    "mtime": 1780892368.283889,
+    "ast_hash": "f7de82c9b1e74de79a3e58276c9ca73b",
+    "semantic_hash": "f7de82c9b1e74de79a3e58276c9ca73b"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/atoms/pixel-sprite.tsx": {
+    "mtime": 1780910930.8991177,
+    "ast_hash": "65fc8f24e9ea93f596058b7e6d6f745b",
+    "semantic_hash": "65fc8f24e9ea93f596058b7e6d6f745b"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/atoms/sprites/atlas.ts": {
+    "mtime": 1780910820.9174662,
+    "ast_hash": "2a62a0dde6886a632e5e37c2abfff016",
+    "semantic_hash": "2a62a0dde6886a632e5e37c2abfff016"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/atoms/sprites/helpers.ts": {
+    "mtime": 1780910793.1421988,
+    "ast_hash": "15fedeaee067e89a86fbe45aa78f72fe",
+    "semantic_hash": "15fedeaee067e89a86fbe45aa78f72fe"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/atoms/sprites/hephaestus.ts": {
+    "mtime": 1780910807.360059,
+    "ast_hash": "712d28a704919a5352e4ee0c905fe0de",
+    "semantic_hash": "712d28a704919a5352e4ee0c905fe0de"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/atoms/sprites/index.ts": {
+    "mtime": 1780910823.4356081,
+    "ast_hash": "c2bda6826703a5c6c6cdabc12f9c5992",
+    "semantic_hash": "c2bda6826703a5c6c6cdabc12f9c5992"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/atoms/sprites/prometheus.ts": {
+    "mtime": 1780910814.002926,
+    "ast_hash": "9cbab07d348b4d3e6ca9c0766ee474ad",
+    "semantic_hash": "9cbab07d348b4d3e6ca9c0766ee474ad"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/atoms/sprites/sisyphus.ts": {
+    "mtime": 1780910800.1304445,
+    "ast_hash": "0f952abae8697675b2c5c47ee96d144a",
+    "semantic_hash": "0f952abae8697675b2c5c47ee96d144a"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/atoms/status-dot.tsx": {
+    "mtime": 1780892680.6311975,
+    "ast_hash": "ffbabb1e3f751c7da9cac0c62d6347d5",
+    "semantic_hash": "ffbabb1e3f751c7da9cac0c62d6347d5"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/molecules/agent-character-pill.tsx": {
+    "mtime": 1781061266.1008995,
+    "ast_hash": "f1df79fb588d3a698f81245d62685106",
+    "semantic_hash": "f1df79fb588d3a698f81245d62685106"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/molecules/prompt-group.tsx": {
+    "mtime": 1780906942.038449,
+    "ast_hash": "de3eb72e6dc8b5159140839743d2c53b",
+    "semantic_hash": "de3eb72e6dc8b5159140839743d2c53b"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/molecules/status-indicator.tsx": {
+    "mtime": 1780894576.5381014,
+    "ast_hash": "f6daed68c50ca5e92d8cd41bbf8c06d4",
+    "semantic_hash": "f6daed68c50ca5e92d8cd41bbf8c06d4"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/organisms/agent-card.tsx": {
+    "mtime": 1781061544.2495232,
+    "ast_hash": "5d694f15727830639724ff686e907796",
+    "semantic_hash": "5d694f15727830639724ff686e907796"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/organisms/agent-grid.tsx": {
+    "mtime": 1781061316.449545,
+    "ast_hash": "338212a2df8422a00bea85d00ad310c1",
+    "semantic_hash": "338212a2df8422a00bea85d00ad310c1"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/organisms/dashboard-header.tsx": {
+    "mtime": 1780913642.2321792,
+    "ast_hash": "c9dc2afa94a6eeac7173c9a68d6f6f8b",
+    "semantic_hash": "c9dc2afa94a6eeac7173c9a68d6f6f8b"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/organisms/filter-bar.tsx": {
+    "mtime": 1780904278.509911,
+    "ast_hash": "3457d055a806e4b7351658abed1aa7d8",
+    "semantic_hash": "3457d055a806e4b7351658abed1aa7d8"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/organisms/new-session-modal.tsx": {
+    "mtime": 1780915538.9687376,
+    "ast_hash": "ef01e3af425cd1caa2fa243093ad6c30",
+    "semantic_hash": "ef01e3af425cd1caa2fa243093ad6c30"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/organisms/terminal-pane.tsx": {
+    "mtime": 1780908489.3733737,
+    "ast_hash": "31d48d354fc1fddefed6de408b384f08",
+    "semantic_hash": "31d48d354fc1fddefed6de408b384f08"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/templates/dashboard-layout.tsx": {
+    "mtime": 1780904319.274025,
+    "ast_hash": "3f24e4b63a1c6187eac6ad0a86bc3b01",
+    "semantic_hash": "3f24e4b63a1c6187eac6ad0a86bc3b01"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/thegridcn/circuit-background.tsx": {
+    "mtime": 1780892680.6461654,
+    "ast_hash": "b8c82ff773f1553ec47cd11ae1a39b02",
+    "semantic_hash": "b8c82ff773f1553ec47cd11ae1a39b02"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/thegridcn/data-card.tsx": {
+    "mtime": 1780892680.6510942,
+    "ast_hash": "9b357eb0004b98485b47bcb80a8104fe",
+    "semantic_hash": "9b357eb0004b98485b47bcb80a8104fe"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/thegridcn/grid-scan-overlay.tsx": {
+    "mtime": 1780892680.648654,
+    "ast_hash": "6e6a1f73e132c283cc855e8ed9fa6948",
+    "semantic_hash": "6e6a1f73e132c283cc855e8ed9fa6948"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/thegridcn/hud-corner-frame.tsx": {
+    "mtime": 1780892680.6411061,
+    "ast_hash": "ef95bb781214cd95a63bba512c002d3f",
+    "semantic_hash": "ef95bb781214cd95a63bba512c002d3f"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/thegridcn/modal.tsx": {
+    "mtime": 1780910494.2553766,
+    "ast_hash": "1b388edff3c4db7c321d45d5d314d04d",
+    "semantic_hash": "1b388edff3c4db7c321d45d5d314d04d"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/thegridcn/status-bar.tsx": {
+    "mtime": 1780892680.6533787,
+    "ast_hash": "74e772a937a750fe57047b846decaecd",
+    "semantic_hash": "74e772a937a750fe57047b846decaecd"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/thegridcn/terminal.tsx": {
+    "mtime": 1780892680.6434827,
+    "ast_hash": "d36e4d182dac443d6db41a2873bc49b5",
+    "semantic_hash": "d36e4d182dac443d6db41a2873bc49b5"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/ui/badge.tsx": {
+    "mtime": 1780892680.6009192,
+    "ast_hash": "c22dcca176d1b5351d0e65215b0189ea",
+    "semantic_hash": "c22dcca176d1b5351d0e65215b0189ea"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/ui/button.tsx": {
+    "mtime": 1780892680.6071947,
+    "ast_hash": "730e00c2c0228132c8cfecf5a97646b8",
+    "semantic_hash": "730e00c2c0228132c8cfecf5a97646b8"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/ui/input.tsx": {
+    "mtime": 1780892680.6162043,
+    "ast_hash": "02c9cc5595d15722cf35edf0604f790b",
+    "semantic_hash": "02c9cc5595d15722cf35edf0604f790b"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/components/ui/select.tsx": {
+    "mtime": 1780892680.6114347,
+    "ast_hash": "3a634c1ac1d27d81f321fb834cb049cd",
+    "semantic_hash": "3a634c1ac1d27d81f321fb834cb049cd"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/hooks/useSessionStream.ts": {
+    "mtime": 1780916476.1154304,
+    "ast_hash": "2f597fc265247b9d1974b9694b9d7ebd",
+    "semantic_hash": "2f597fc265247b9d1974b9694b9d7ebd"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/lib/agent-characters.tsx": {
+    "mtime": 1780889140.2782552,
+    "ast_hash": "5b8c0a61390dec5aa8a4e8772f8201f6",
+    "semantic_hash": "5b8c0a61390dec5aa8a4e8772f8201f6"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/lib/api.ts": {
+    "mtime": 1781060587.1957264,
+    "ast_hash": "c8f3958a3569eaf3dcfe77a7962c4d5e",
+    "semantic_hash": "c8f3958a3569eaf3dcfe77a7962c4d5e"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/lib/opencode.ts": {
+    "mtime": 1781060283.1060953,
+    "ast_hash": "447c9aee611da2ef52ae14a684208003",
+    "semantic_hash": "447c9aee611da2ef52ae14a684208003"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/lib/store.ts": {
+    "mtime": 1780915179.4526758,
+    "ast_hash": "a1ad6105174df2a28085cedd491c6d07",
+    "semantic_hash": "a1ad6105174df2a28085cedd491c6d07"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/lib/utils.ts": {
+    "mtime": 1780890898.7264693,
+    "ast_hash": "5a6fd53fdcf2be529e9cc0b718fde352",
+    "semantic_hash": "5a6fd53fdcf2be529e9cc0b718fde352"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/next.config.mjs": {
+    "mtime": 1780892500.9541152,
+    "ast_hash": "87ae8b58fcf274bc04f56c7373a4d363",
+    "semantic_hash": "87ae8b58fcf274bc04f56c7373a4d363"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/package.json": {
+    "mtime": 1780908302.752267,
+    "ast_hash": "01c318a98dfb698ad703ca50987bdb62",
+    "semantic_hash": "01c318a98dfb698ad703ca50987bdb62"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/postcss.config.mjs": {
+    "mtime": 1780894084.5445452,
+    "ast_hash": "0f8aa602547b154dc06be77b007c51d2",
+    "semantic_hash": "0f8aa602547b154dc06be77b007c51d2"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/tsconfig.json": {
+    "mtime": 1780891533.3945303,
+    "ast_hash": "951d656958bb62603dfbfb75f5ee1e42",
+    "semantic_hash": "951d656958bb62603dfbfb75f5ee1e42"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/.opencode/skills/graphify/SKILL.md": {
+    "mtime": 1781061620.2941031,
+    "ast_hash": "26f00da9d931e7e219b430cb32aac09d",
+    "semantic_hash": "26f00da9d931e7e219b430cb32aac09d"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/.opencode/skills/graphify/references/add-watch.md": {
+    "mtime": 1780974705.4610286,
+    "ast_hash": "0df0589623217ca38a12bdcabfb42f4c",
+    "semantic_hash": "0df0589623217ca38a12bdcabfb42f4c"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/.opencode/skills/graphify/references/exports.md": {
+    "mtime": 1780974705.4611337,
+    "ast_hash": "7fb1a81aca17a462db70684a324fcfb0",
+    "semantic_hash": "7fb1a81aca17a462db70684a324fcfb0"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/.opencode/skills/graphify/references/extraction-spec.md": {
+    "mtime": 1780974705.461309,
+    "ast_hash": "24808b03abfeaf5f6435bb69c0125b2c",
+    "semantic_hash": "24808b03abfeaf5f6435bb69c0125b2c"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/.opencode/skills/graphify/references/github-and-merge.md": {
+    "mtime": 1780974705.4614184,
+    "ast_hash": "cde13df085e4c492aeb7ba298a996d0d",
+    "semantic_hash": "cde13df085e4c492aeb7ba298a996d0d"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/.opencode/skills/graphify/references/hooks.md": {
+    "mtime": 1780974705.4615376,
+    "ast_hash": "3f545db6ce646650bb9de588f5512a27",
+    "semantic_hash": "3f545db6ce646650bb9de588f5512a27"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/.opencode/skills/graphify/references/query.md": {
+    "mtime": 1780974705.4807987,
+    "ast_hash": "c2a8e798674a81b02aa9975f43023819",
+    "semantic_hash": "c2a8e798674a81b02aa9975f43023819"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/.opencode/skills/graphify/references/transcribe.md": {
+    "mtime": 1780974705.480931,
+    "ast_hash": "70f6aa30d6211f3a2c7e9fc45479f50c",
+    "semantic_hash": "70f6aa30d6211f3a2c7e9fc45479f50c"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/.opencode/skills/graphify/references/update.md": {
+    "mtime": 1780974705.4812827,
+    "ast_hash": "0dad167a95bdb389f02fecffb60b1bc8",
+    "semantic_hash": "0dad167a95bdb389f02fecffb60b1bc8"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/AGENTS.md": {
+    "mtime": 1781061620.2951546,
+    "ast_hash": "024cdbff20c6ecd5df77abd46f1872c1",
+    "semantic_hash": "024cdbff20c6ecd5df77abd46f1872c1"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/README.md": {
+    "mtime": 1780912169.9126172,
+    "ast_hash": "ba2de148e71e8810ab0ee351b0034dc2",
+    "semantic_hash": "ba2de148e71e8810ab0ee351b0034dc2"
+  },
+  "/Users/natdanaikhemt/Personal/Projects/virtual-agents/REQUIREMENT.md": {
+    "mtime": 1780902551.2804353,
+    "ast_hash": "b1b0e763862dbed10f6d437acc6bffa6",
+    "semantic_hash": "b1b0e763862dbed10f6d437acc6bffa6"
+  }
+}
