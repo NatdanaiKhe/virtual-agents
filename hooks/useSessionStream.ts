@@ -9,7 +9,7 @@ import {
 } from "../lib/store";
 import { client } from "../lib/api";
 
-const POLL_INTERVAL = 5_000;
+const POLL_INTERVAL = 15_000;
 
 function mapStatusToSessionStatus(status: { type: string }): SessionStatus {
   switch (status.type) {
@@ -41,6 +41,8 @@ export function useSessionStream() {
 
   const eventSourceRef = useRef<EventSource | null>(null);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const sseRetries = useRef(0);
+  const retryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const fetchSessionMessages = useCallback(
     async (sessionId: string) => {
@@ -250,8 +252,13 @@ export function useSessionStream() {
       eventSourceRef.current = es;
 
       es.onopen = () => {
+        sseRetries.current = 0;
         setConnected(true);
         setError(null);
+        if (pollRef.current) {
+          clearInterval(pollRef.current);
+          pollRef.current = null;
+        }
       };
 
       es.onmessage = (event) => {
@@ -264,12 +271,19 @@ export function useSessionStream() {
       };
 
       es.onerror = () => {
-        setConnected(false);
-        es.close();
-        eventSourceRef.current = null;
-        setTimeout(() => {
-          if (!eventSourceRef.current) startPolling();
-        }, 1000);
+        sseRetries.current++;
+        if (sseRetries.current >= 3) {
+          setConnected(false);
+          es.close();
+          eventSourceRef.current = null;
+          startPolling();
+          // Retry SSE after 30s
+          retryTimerRef.current = setTimeout(() => {
+            retryTimerRef.current = null;
+            startSSE();
+          }, 30000);
+        }
+        // Otherwise let EventSource auto-reconnect (don't close)
       };
     } catch {
       startPolling();
@@ -556,6 +570,9 @@ export function useSessionStream() {
       }
       if (pollRef.current) {
         clearInterval(pollRef.current);
+      }
+      if (retryTimerRef.current) {
+        clearTimeout(retryTimerRef.current);
       }
     };
   }, [fetchInitialData, startSSE, startPolling]);

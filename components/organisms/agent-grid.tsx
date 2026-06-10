@@ -1,27 +1,42 @@
 "use client";
 
+import { useMemo, memo } from "react";
 import { useAppStore } from "../../lib/store";
 import { AgentCard } from "./agent-card";
 import { cn } from "../../lib/utils";
 
-export function AgentGrid() {
+function AgentGridInner() {
   const sessions = useAppStore((s) => s.sessions);
   const filter = useAppStore((s) => s.filter);
   const statusFilter = useAppStore((s) => s.statusFilter);
 
-  const filtered = Array.from(sessions.values())
+  const sessionArray = Array.from(sessions.values());
+
+  // Build parent → children map
+  const { parents, childMap } = useMemo(() => {
+    const map = new Map<string, typeof sessionArray>();
+    const tops: typeof sessionArray = [];
+    for (const s of sessionArray) {
+      if (s.parentID) {
+        const list = map.get(s.parentID) || [];
+        list.push(s);
+        map.set(s.parentID, list);
+      } else {
+        tops.push(s);
+      }
+    }
+    return { parents: tops, childMap: map };
+  }, [sessionArray]);
+
+  const filtered = parents
     .filter((s) => {
       if (statusFilter !== "all" && s.status !== statusFilter) return false;
       if (!filter) return true;
       const q = filter.toLowerCase();
-      return s.agentName.toLowerCase().includes(q) || s.sessionId.toLowerCase().includes(q);
+      return (s.title + s.agentName + s.sessionId).toLowerCase().includes(q);
     })
     .sort((a, b) => {
       if (a.isPinned !== b.isPinned) return a.isPinned ? -1 : 1;
-      // Children grouped under parents
-      if (a.parentID === b.sessionId) return 1;
-      if (b.parentID === a.sessionId) return -1;
-      if (a.parentID && b.parentID && a.parentID === b.parentID) return (a.createdAt ?? 0) - (b.createdAt ?? 0);
       return (b.createdAt ?? 0) - (a.createdAt ?? 0);
     });
 
@@ -37,11 +52,13 @@ export function AgentGrid() {
 
   return (
     <div className={cn("flex flex-wrap gap-4", filtered.length === 1 ? "max-w-3xl mx-auto" : "")}>
-      {filtered.map((s) => (
-        <div key={s.sessionId} className={cn(filtered.length === 1 ? "w-full" : "w-full lg:w-[calc(50%-0.5rem)]", s.parentID && "ml-6 border-l-2 border-primary/20 pl-4")}>
-          <AgentCard session={s} />
+      {filtered.map((parent) => (
+        <div key={parent.sessionId} className={filtered.length === 1 ? "w-full" : "w-full lg:w-[calc(50%-0.5rem)]"}>
+          <AgentCard session={parent} children={childMap.get(parent.sessionId) || []} />
         </div>
       ))}
     </div>
   );
 }
+
+export const AgentGrid = memo(AgentGridInner);

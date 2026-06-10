@@ -9,7 +9,7 @@ export async function GET() {
   const stream = new ReadableStream({
     async start(controller) {
       try {
-        const client = getOpencodeClient();
+        const client = await getOpencodeClient();
 
         await client.event.subscribe({
           onSseEvent: (event) => {

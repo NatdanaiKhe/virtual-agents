@@ -1,18 +1,27 @@
 import { createOpencodeClient } from "@opencode-ai/sdk";
+import { cookies } from "next/headers";
 
-const OPENCODE_SERVER_URL = process.env.OPENCODE_SERVER_URL ?? "http://localhost:4096";
+const DEFAULT_SERVER_URL = process.env.OPENCODE_SERVER_URL ?? "http://localhost:4096";
 
-/**
- * Singleton SDK client for the opencode server.
- * All SDK calls go through Next.js API routes to avoid CORS issues in the browser.
- */
+export async function getOpencodeServerUrl() {
+  try {
+    const cookieStore = await cookies();
+    const override = cookieStore.get("opencode-server-url")?.value;
+    if (override) return override;
+  } catch {
+    // cookies() throws outside request context (e.g. static generation)
+  }
+  return DEFAULT_SERVER_URL;
+}
+
 let _client: ReturnType<typeof createOpencodeClient> | null = null;
+let _clientUrl = "";
 
-export function getOpencodeClient() {
-  if (!_client) {
-    _client = createOpencodeClient({
-      baseUrl: OPENCODE_SERVER_URL,
-    });
+export async function getOpencodeClient() {
+  const url = await getOpencodeServerUrl();
+  if (!_client || _clientUrl !== url) {
+    _client = createOpencodeClient({ baseUrl: url });
+    _clientUrl = url;
   }
   return _client;
 }
@@ -21,7 +30,7 @@ export function getOpencodeClient() {
  * Server-side only: fetches the session list from the opencode server.
  */
 export async function fetchSessions() {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   const result = await client.session.list();
   return result.data ?? [];
 }
@@ -30,7 +39,7 @@ export async function fetchSessions() {
  * Server-side only: fetches messages for a session.
  */
 export async function fetchSessionMessages(sessionId: string) {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   const result = await client.session.messages({
     path: { id: sessionId },
   });
@@ -41,7 +50,7 @@ export async function fetchSessionMessages(sessionId: string) {
  * Server-side only: gets a single session.
  */
 export async function fetchSession(sessionId: string) {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   const result = await client.session.get({
     path: { id: sessionId },
   });
@@ -52,7 +61,7 @@ export async function fetchSession(sessionId: string) {
  * Server-side only: creates a new session.
  */
 export async function createSession(title?: string) {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   const result = await client.session.create({
     body: title ? { title } : undefined,
   });
@@ -68,7 +77,7 @@ export async function promptSession(
   agent?: string,
   model?: { providerID: string; modelID: string }
 ) {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   const result = await client.session.prompt({
     path: { id: sessionId },
     body: {
@@ -84,7 +93,7 @@ export async function promptSession(
  * Server-side only: aborts a session.
  */
 export async function abortSession(sessionId: string) {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   const result = await client.session.abort({
     path: { id: sessionId },
   });
@@ -95,7 +104,7 @@ export async function abortSession(sessionId: string) {
  * Server-side only: deletes a session.
  */
 export async function deleteSession(sessionId: string) {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   const result = await client.session.delete({
     path: { id: sessionId },
   });
@@ -106,7 +115,7 @@ export async function deleteSession(sessionId: string) {
  * Server-side only: fetches all available agents.
  */
 export async function fetchAgents() {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   const result = await client.app.agents();
   return result.data ?? [];
 }
@@ -115,7 +124,7 @@ export async function fetchAgents() {
  * Server-side only: fetches all providers and models.
  */
 export async function fetchProviders() {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   const result = await client.provider.list();
   return result.data ?? { all: [], default: {}, connected: [] };
 }
@@ -124,7 +133,7 @@ export async function fetchProviders() {
  * Server-side only: fetches session statuses.
  */
 export async function fetchSessionStatuses() {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   const result = await client.session.status();
   return result.data ?? {};
 }
@@ -134,7 +143,7 @@ export async function fetchSessionStatuses() {
  * Returns an async iterable of events.
  */
 export async function subscribeToEvents() {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   return client.event.subscribe();
 }
 
@@ -142,7 +151,7 @@ export async function subscribeToEvents() {
  * Server-side only: fetches server config (default model, agents, etc).
  */
 export async function fetchConfig() {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   const result = await client.config.get();
   return result.data ?? null;
 }
@@ -152,7 +161,7 @@ export async function fetchConfig() {
  */
 
 export async function fetchPath() {
-  const client = getOpencodeClient();
+  const client = await getOpencodeClient();
   const result = await client.path.get();
   return result.data ?? null;
 }

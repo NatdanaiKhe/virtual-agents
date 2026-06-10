@@ -5,14 +5,16 @@ import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { StatusDot } from "../atoms/status-dot";
 import { StatusBar } from "../thegridcn/status-bar";
-import { Plus, Moon, Sun, Bot, RefreshCw } from "lucide-react";
+import { Plus, Moon, Sun, Bot, RefreshCw, Settings } from "lucide-react";
 
 export function DashboardHeader({
   onNewSession,
   onRefresh,
+  onOpenSettings,
 }: {
   onNewSession: () => void;
   onRefresh: () => void;
+  onOpenSettings: () => void;
 }) {
   const { isConnected, darkMode, toggleDarkMode, sessions } = useAppStore();
 
@@ -37,6 +39,9 @@ export function DashboardHeader({
                 ) : (
                   <Moon className="h-3.5 w-3.5" />
                 )}
+              </Button>
+              <Button variant="ghost" size="icon-sm" onClick={onOpenSettings} title="Settings">
+                <Settings className="h-3.5 w-3.5" />
               </Button>
               <Button variant="ghost" size="icon-sm" onClick={onRefresh} title="Refresh sessions (R)">
                 <RefreshCw className="h-3.5 w-3.5" />

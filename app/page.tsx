@@ -9,6 +9,7 @@ import { DashboardHeader } from "../components/organisms/dashboard-header";
 import { FilterBar } from "../components/organisms/filter-bar";
 import { AgentGrid } from "../components/organisms/agent-grid";
 import { NewSessionModal } from "../components/organisms/new-session-modal";
+import { SettingsModal } from "../components/organisms/settings-modal";
 import { Bot, Plus } from "lucide-react";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
   const { refresh } = useSessionStream();
 
   const [showNewModal, setShowNewModal] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function Home() {
 
   return (
     <DashboardLayout
-      header={<DashboardHeader onNewSession={() => setShowNewModal(true)} onRefresh={refresh} />}
+      header={<DashboardHeader onNewSession={() => setShowNewModal(true)} onRefresh={refresh} onOpenSettings={() => setShowSettings(true)} />}
       filterBar={<FilterBar />}
     >
       {/* Error banner */}
@@ -99,6 +101,11 @@ export default function Home() {
       {!isLoading && !error && sessions.size > 0 && <AgentGrid />}
 
       <NewSessionModal isOpen={showNewModal} onClose={() => setShowNewModal(false)} />
+      <SettingsModal
+        isOpen={showSettings}
+        onClose={() => setShowSettings(false)}
+        onServerUrlChanged={refresh}
+      />
     </DashboardLayout>
   );
 }

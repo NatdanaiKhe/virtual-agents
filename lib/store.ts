@@ -74,6 +74,7 @@ interface AppState {
   agents: AgentOption[];
   models: ModelOption[];
   defaultModel: string | null;
+  defaultAgent: string | null;
   isLoading: boolean;
   error: string | null;
 
@@ -110,6 +111,7 @@ interface AppState {
   setAgents: (agents: AgentOption[]) => void;
   setModels: (models: ModelOption[]) => void;
   setDefaultModel: (model: string | null) => void;
+  setDefaultAgent: (agent: string | null) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
 }
@@ -124,7 +126,14 @@ export const useAppStore = create<AppState>((set) => ({
     window.matchMedia("(prefers-color-scheme: dark)").matches,
   agents: [],
   models: [],
-  defaultModel: null,
+  defaultModel:
+    typeof window !== "undefined"
+      ? localStorage.getItem("opencode-default-model")
+      : null,
+  defaultAgent:
+    typeof window !== "undefined"
+      ? localStorage.getItem("opencode-default-agent")
+      : null,
   isLoading: false,
   error: null,
 
@@ -276,7 +285,20 @@ export const useAppStore = create<AppState>((set) => ({
   toggleDarkMode: () => set((state) => ({ darkMode: !state.darkMode })),
   setAgents: (agents) => set({ agents }),
   setModels: (models) => set({ models }),
-  setDefaultModel: (defaultModel) => set({ defaultModel }),
+  setDefaultModel: (defaultModel) => {
+    if (typeof window !== "undefined") {
+      if (defaultModel) localStorage.setItem("opencode-default-model", defaultModel);
+      else localStorage.removeItem("opencode-default-model");
+    }
+    set({ defaultModel });
+  },
+  setDefaultAgent: (defaultAgent) => {
+    if (typeof window !== "undefined") {
+      if (defaultAgent) localStorage.setItem("opencode-default-agent", defaultAgent);
+      else localStorage.removeItem("opencode-default-agent");
+    }
+    set({ defaultAgent });
+  },
   setLoading: (loading) => set({ isLoading: loading }),
   setError: (error) => set({ error }),
 }));

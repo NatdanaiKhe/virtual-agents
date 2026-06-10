@@ -76,8 +76,22 @@ export const client = {
   },
   path: {
     get: () =>
-      fetch("/api/path")
+      fetch("/api/paths")
         .then((r) => r.json())
         .catch(() => []),
+  },
+  settings: {
+    serverUrl: {
+      get: () =>
+        fetch("/api/settings/server-url")
+          .then((r) => r.json())
+          .catch(() => ({ serverUrl: "http://localhost:4096" })),
+      set: (serverUrl: string) =>
+        fetch("/api/settings/server-url", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ serverUrl }),
+        }).then((r) => r.json()),
+    },
   },
 };
