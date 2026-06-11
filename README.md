@@ -1,3 +1,5 @@
+# This project is for my own curiosity
+
 # Multi-Agent Dashboard
 
 Real-time monitoring and control interface for [opencode](https://opencode.ai) AI coding agents. Observe all running sessions, stream live output, send follow-up prompts, and manage agent lifecycles — all from a single browser window.
